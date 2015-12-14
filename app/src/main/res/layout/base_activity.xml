@@ -20,8 +20,45 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/activity_cool" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
 
-    <include layout="@layout/weather_lv" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:layout_weight="2"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="5dp"
+            android:textSize="17dp"
+            android:id="@+id/city_name_tv"
+            android:text="@string/city_name"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_weight="21"
+            android:layout_gravity="right"
+            android:background="@drawable/refresh_refreshing"
+            android:id="@+id/get_data_btn"/>
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weather_lv">
+
+        </ListView>
+
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

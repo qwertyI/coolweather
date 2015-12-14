@@ -2,8 +2,6 @@ package cn.coolweather.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.util.List;
 
 import cn.coolweather.R;
@@ -25,17 +27,20 @@ import cn.coolweather.activity.CoolActivity.SimpleWeather;
 public class WeatherAdapter extends ArrayAdapter<SimpleWeather>{
 
     private int resourceId;
+    private RequestQueue mQueue;
+    private ImageLoader imageLoader;
 
     public WeatherAdapter(Context context, int resource, List<SimpleWeather> objects){
         super(context, resource, objects);
         resourceId = resource;
+        mQueue = Volley.newRequestQueue(context);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup group){
         SimpleWeather simpleWeather = getItem(position);
         View view = convertView;
-        ViewHolder viewHolder;
+        final ViewHolder viewHolder;
         if (view == null){
             view = LayoutInflater.from(getContext()).inflate(resourceId, null);
             viewHolder = new ViewHolder();
@@ -46,8 +51,20 @@ public class WeatherAdapter extends ArrayAdapter<SimpleWeather>{
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        Log.i("TAG", simpleWeather.getDayPictureUrl()+"");
-        viewHolder.picture.setImageBitmap(simpleWeather.getDayPictureUrl());
+        ImageRequest imageRequest = new ImageRequest(simpleWeather.getDayPictureUrl(),
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap bitmap) {
+                        viewHolder.picture.setImageBitmap(bitmap);
+                    }
+                }, 50, 70, Bitmap.Config.RGB_565,
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        volleyError.printStackTrace();
+                    }
+                });
+        mQueue.add(imageRequest);
         viewHolder.temperature.setText(simpleWeather.getTemperature());
         viewHolder.wind.setText(simpleWeather.getWind());
         return view;
@@ -58,19 +75,4 @@ public class WeatherAdapter extends ArrayAdapter<SimpleWeather>{
         TextView temperature;
         TextView wind;
     }
-
-    public Bitmap getUrlImage(String url) {
-        Bitmap bmp = null;
-        try {
-            URL myurl = new URL(url);
-            // 获得连接
-            HttpURLConnection conn = (HttpURLConnection) myurl.openConnection();
-            InputStream is = conn.getInputStream();//获得图片的数据流
-            bmp = BitmapFactory.decodeStream(is);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bmp;
-    }
-
 }
