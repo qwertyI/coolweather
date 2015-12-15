@@ -65,11 +65,13 @@ public class CoolActivity extends AppCompatActivity implements OnClickListener{
         private String dayPictureUrl;
         private String temperature;
         private String wind;
+        private String date;
 
-        public SimpleWeather(String  dayPictureUrl, String temperature, String wind){
+        public SimpleWeather(String  dayPictureUrl, String temperature, String wind, String date){
             this.dayPictureUrl = dayPictureUrl;
             this.temperature = temperature;
             this.wind = wind;
+            this.date = date;
         }
 
         public String getDayPictureUrl(){
@@ -82,6 +84,10 @@ public class CoolActivity extends AppCompatActivity implements OnClickListener{
 
         public String getWind(){
             return wind;
+        }
+
+        public String getDate(){
+            return date;
         }
 
     }

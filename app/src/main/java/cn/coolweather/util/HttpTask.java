@@ -18,6 +18,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import java.net.URLEncoder;
+import java.util.Calendar;
 import java.util.List;
 
 import cn.coolweather.R;
@@ -29,7 +31,7 @@ import cn.coolweather.adapter.WeatherAdapter;
  */
 public class HttpTask extends AsyncTask<Void, String, Boolean> {
 
-    private final static String URL = "http://api.map.baidu.com/telematics/v3/weather?location=shenzhen&output=json&ak=H9VNal4gTO6wKz2XjIQpvSWg";
+    private final static String URL = "http://api.map.baidu.com/telematics/v3/weather?location=%E6%B7%B1%E5%9C%B3&output=json&ak=H9VNal4gTO6wKz2XjIQpvSWg";
 
     private Context mContext;
     private ProgressDialog progressDialog;
@@ -55,6 +57,8 @@ public class HttpTask extends AsyncTask<Void, String, Boolean> {
         gson = new Gson();
         this.weatherAdapter = new WeatherAdapter(this.mContext, R.layout.weather_item, this.mWeathers);
         this.listView.setAdapter(this.weatherAdapter);
+        this.listView.setDividerHeight(0);
+        Log.i("TAG", URLEncoder.encode("深圳"));
     }
 
     @Override
@@ -74,7 +78,14 @@ public class HttpTask extends AsyncTask<Void, String, Boolean> {
                     List<Index> indexes = result.getIndexes();
                     List<Weather> weathers = result.getWeathers();
                     for (Weather weather : weathers) {
-                        SimpleWeather weather1 = new SimpleWeather(weather.getDayPictureUrl(), weather.getTemperature(), weather.getWind());
+                        SimpleWeather weather1;
+                        Calendar calendar = Calendar.getInstance();
+                        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                        if (hour < 6 || hour >18){
+                            weather1 = new SimpleWeather(weather.getNightPictureUrl(), weather.getTemperature(), weather.getWind(), weather.getDate());
+                        }else {
+                            weather1 = new SimpleWeather(weather.getDayPictureUrl(), weather.getTemperature(), weather.getWind(), weather.getDate());
+                        }
                         mWeathers.add(weather1);
                         publishProgress(weather.getDayPictureUrl());
                     }

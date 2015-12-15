@@ -47,6 +47,7 @@ public class WeatherAdapter extends ArrayAdapter<SimpleWeather>{
             viewHolder.picture = (ImageView) view.findViewById(R.id.weather_iv);
             viewHolder.temperature = (TextView) view.findViewById(R.id.weather_temperature_tv);
             viewHolder.wind = (TextView) view.findViewById(R.id.weather_wind_tv);
+            viewHolder.date = (TextView) view.findViewById(R.id.date_tv);
             view.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) view.getTag();
@@ -67,6 +68,7 @@ public class WeatherAdapter extends ArrayAdapter<SimpleWeather>{
         mQueue.add(imageRequest);
         viewHolder.temperature.setText(simpleWeather.getTemperature());
         viewHolder.wind.setText(simpleWeather.getWind());
+        viewHolder.date.setText(simpleWeather.getDate());
         return view;
     }
 
@@ -74,5 +76,6 @@ public class WeatherAdapter extends ArrayAdapter<SimpleWeather>{
         ImageView picture;
         TextView temperature;
         TextView wind;
+        TextView date;
     }
 }
