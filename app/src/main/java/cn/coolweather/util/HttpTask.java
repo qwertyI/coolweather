@@ -81,7 +81,7 @@ public class HttpTask extends AsyncTask<Void, String, Boolean> {
                         SimpleWeather weather1;
                         Calendar calendar = Calendar.getInstance();
                         int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                        if (hour < 6 || hour >18){
+                        if (hour <= 6 || hour >=18){
                             weather1 = new SimpleWeather(weather.getNightPictureUrl(), weather.getTemperature(), weather.getWind(), weather.getDate());
                         }else {
                             weather1 = new SimpleWeather(weather.getDayPictureUrl(), weather.getTemperature(), weather.getWind(), weather.getDate());

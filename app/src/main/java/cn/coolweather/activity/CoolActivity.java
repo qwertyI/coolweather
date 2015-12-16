@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,6 +36,12 @@ public class CoolActivity extends AppCompatActivity implements OnClickListener{
         show_simple_weather = (ListView) findViewById(R.id.weather_lv);
         get_data.setOnClickListener(this);
         select_city.setOnClickListener(this);
+        show_simple_weather.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                weathers.get(position).getDate();
+            }
+        });
     }
 
     @Override
