@@ -1,4 +1,4 @@
-package cn.coolweather.util;
+package cn.coolweather.util.WeatherUtil;
 
 /**
  * Created by wei on 2015/12/10.

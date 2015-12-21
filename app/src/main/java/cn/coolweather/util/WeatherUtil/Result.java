@@ -1,4 +1,4 @@
-package cn.coolweather.util;
+package cn.coolweather.util.WeatherUtil;
 
 import java.util.List;
 

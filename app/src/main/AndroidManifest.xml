@@ -2,11 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.coolweather" >
 
+    <uses-sdk
+        android:minSdkVersion="23" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".util.ApiApplication"
@@ -28,6 +31,8 @@
         <activity
             android:name=".activity.CityActivity"
             android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity android:name=".activity.InfoActivity" >
         </activity>
     </application>
 

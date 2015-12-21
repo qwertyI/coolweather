@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:fitsSystemWindows="true"
-    tools:context="cn.coolweather.activity.CityActivity">
+    tools:context="cn.coolweather.activity.InfoActivity">
 
     <android.support.design.widget.AppBarLayout android:layout_height="wrap_content"
         android:layout_width="match_parent" android:theme="@style/AppTheme.AppBarOverlay">
@@ -22,7 +22,7 @@
         android:layout_marginTop="17dp"
         android:gravity="center_horizontal"
         android:id="@+id/please_select_tv"
-        android:text="@string/select_city_name"/>
+        android:text="@string/suggest_tv"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,39 +30,11 @@
         android:layout_margin="5dp"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:textSize="17dp"
-            android:id="@+id/current_city_tv"
-            android:layout_marginTop="60dp"
-            android:text="@string/city_name"/>
-
-        <LinearLayout
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:orientation="horizontal">
-
-            <ListView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/province_lv"></ListView>
-
-            <ListView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/state_lv"></ListView>
-
-            <ListView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/county_lv"></ListView>
-
-        </LinearLayout>
+            android:layout_marginTop="60dp"
+            android:id="@+id/more_suggest_lv"></ListView>
 
     </LinearLayout>
 

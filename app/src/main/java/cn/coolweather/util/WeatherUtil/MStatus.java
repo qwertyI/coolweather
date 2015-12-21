@@ -1,11 +1,11 @@
-package cn.coolweather.util;
+package cn.coolweather.util.WeatherUtil;
 
 import java.util.List;
 
 /**
  * Created by wei on 2015/12/10.
  */
-public class Status {
+public class MStatus {
 
     private int error;
     private String status;
