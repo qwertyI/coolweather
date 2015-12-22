@@ -32,7 +32,7 @@ public class LocationTask extends AsyncTask<Void, String, Boolean> {
         progressDialog = new ProgressDialog(mContext);
         this.location = location;
         mQueue = Volley.newRequestQueue(mContext);
-        url = URL + this.location.getAltitude() + "," + this.location.getLatitude() + "&output=json&ak=" + AK;
+        url = URL + this.location.getLongitude() + "," + this.location.getLatitude() + "&output=json&ak=" + AK;
         Log.i("LOCATION", url);
     }
 

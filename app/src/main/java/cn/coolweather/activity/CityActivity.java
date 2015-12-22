@@ -51,7 +51,7 @@ public class CityActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
-                intent.putExtra("select_city", state_names.get(position).getName());
+                intent.putExtra("select_city", state_names.get(position).getName()+"市");
                 setResult(RESULT_OK, intent);
                 finish();
             }

@@ -55,6 +55,7 @@ public class HttpTask extends AsyncTask<Void, String, Boolean> {
         this.listView.setAdapter(this.weatherAdapter);
         this.listView.setDividerHeight(0);
         this.City = URLEncoder.encode(city);
+        Log.i("ENCODE", this.City);
         url = URL + this.City + "&output=json&ak=" + AK;
     }
 

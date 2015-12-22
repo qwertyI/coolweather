@@ -28,9 +28,9 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_weight="2"
+            android:layout_weight="16"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="5dp"
             android:textSize="17dp"
@@ -38,9 +38,9 @@
             android:text="@string/city_name"/>
 
         <Button
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_weight="21"
+            android:layout_weight="3"
             android:layout_gravity="right"
             android:background="@drawable/refresh_refreshing"
             android:id="@+id/get_data_btn"/>
@@ -51,15 +51,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="70dp"
+        android:orientation="vertical">
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             android:id="@+id/weather_lv">
 
         </ListView>
 
+        <Button
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:id="@+id/relocate_btn"
+        android:background="@drawable/locate"/>
+
     </LinearLayout>
+
+
 
 </android.support.design.widget.CoordinatorLayout>
